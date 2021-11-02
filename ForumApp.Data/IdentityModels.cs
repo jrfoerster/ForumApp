@@ -32,7 +32,9 @@ namespace ForumApp.Data
             return new ApplicationDbContext();
         }
 
-        //DbSet
+        public DbSet<Forum> Forums { get; set; }
+        public DbSet<Thread> Threads { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
