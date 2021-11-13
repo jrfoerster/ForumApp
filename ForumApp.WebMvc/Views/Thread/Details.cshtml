@@ -42,9 +42,9 @@
 
                 @if (User.Identity.GetUserId() == post.UserId.ToString())
                 {
-                    <div>
-                        @Html.ActionLink("Edit", "Edit", "Post", new { id = post.PostId }, htmlAttributes: new { @class = "btn btn-xs btn-warning" })
-                        @Html.ActionLink("Delete", "Delete", "Post", new { id = post.PostId }, htmlAttributes: new { @class = "btn btn-xs btn-danger" })
+                    <div class="btn-group">
+                        @Html.ActionLink("Edit", "Edit", "Post", new { id = post.PostId }, new { @class = "btn btn-xs btn-warning" })
+                        @Html.ActionLink("Delete", "Delete", "Post", new { id = post.PostId }, new { @class = "btn btn-xs btn-danger" })
                     </div>
                 }
             </td>
@@ -53,5 +53,5 @@
 </table>
 
 <p>
-    @Html.ActionLink("Reply", "Create", "Post", new { id = Model.ThreadId }, htmlAttributes: new { @class = "btn btn-primary" })
+    @Html.ActionLink("Reply", "Create", "Post", new { id = Model.ThreadId }, new { @class = "btn btn-primary" })
 </p>

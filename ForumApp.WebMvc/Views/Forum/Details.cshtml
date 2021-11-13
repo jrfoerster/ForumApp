@@ -7,7 +7,7 @@
 
 <h2>@Model.Name</h2>
 <p>
-    @Html.ActionLink("New Thread", "Create", "Thread", new { id = Model.ForumId }, htmlAttributes: new { @class = "btn btn-primary" })
+    @Html.ActionLink("New Thread", "Create", "Thread", new { id = Model.ForumId }, new { @class = "btn btn-primary" })
 </p>
 
 <table class="table table-striped">
@@ -45,8 +45,10 @@
             <td>
                 @if (User.Identity.GetUserId() == thread.UserId.ToString())
                 {
-                    @Html.ActionLink("Edit", "Edit", "Thread", new { id = thread.ThreadId }, htmlAttributes: new { @class = "btn btn-xs btn-warning" })
-                    @Html.ActionLink("Delete", "Delete", "Thread", new { id = thread.ThreadId }, htmlAttributes: new { @class = "btn btn-xs btn-danger" })
+                    <div class="btn-group">
+                        @Html.ActionLink("Edit", "Edit", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-xs btn-warning" })
+                        @Html.ActionLink("Delete", "Delete", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-xs btn-danger" })
+                    </div>
                 }
             </td>
         </tr>
