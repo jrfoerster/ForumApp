@@ -8,22 +8,18 @@ using System.Web;
 using System.Web.Mvc;
 using ForumApp.Data;
 using ForumApp.Models;
+using ForumApp.Services;
+using Microsoft.AspNet.Identity;
 
 namespace ForumApp.WebMvc.Controllers
 {
     public class ForumController : Controller
     {
-        private ApplicationDbContext _context = new ApplicationDbContext();
-
         // GET: Forum
         public ActionResult Index()
         {
-            var forums = _context.Forums.Select(forum => new ForumListItem()
-            {
-                ForumId = forum.Id,
-                Name = forum.Name,
-                Description = forum.Description
-            });
+            var service = CreateForumService();
+            var forums = service.GetForums();
             return View(forums);
         }
 
@@ -34,11 +30,15 @@ namespace ForumApp.WebMvc.Controllers
             {
                 return HttpBadRequest();
             }
-            Forum forum = _context.Forums.Find(id);
+
+            var service = CreateForumService();
+            var forum = service.GetForumById(id.Value);
+
             if (forum == null)
             {
                 return HttpNotFound();
             }
+
             return View(forum);
         }
 
@@ -54,83 +54,75 @@ namespace ForumApp.WebMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var forum = new Forum()
+                var service = CreateForumService();
+                if (service.CreateForum(model))
                 {
-                    Name = model.Name,
-                    Description = model.Description
-                };
-                _context.Forums.Add(forum);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+                    TempData["SaveResult"] = "New forum was created.";
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(model);
         }
 
-        // GET: Forum/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return HttpBadRequest();
-            }
-            Forum forum = _context.Forums.Find(id);
-            if (forum == null)
-            {
-                return HttpNotFound();
-            }
-            return View(forum);
-        }
+        //// GET: Forum/Edit/5
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return HttpBadRequest();
+        //    }
+        //    Forum forum = _context.Forums.Find(id);
+        //    if (forum == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(forum);
+        //}
 
-        // POST: Forum/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description")] Forum forum)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Entry(forum).State = EntityState.Modified;
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(forum);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "Id,Name,Description")] Forum forum)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Entry(forum).State = EntityState.Modified;
+        //        _context.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(forum);
+        //}
 
-        // GET: Forum/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return HttpBadRequest();
-            }
-            Forum forum = _context.Forums.Find(id);
-            if (forum == null)
-            {
-                return HttpNotFound();
-            }
-            return View(forum);
-        }
+        //// GET: Forum/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return HttpBadRequest();
+        //    }
+        //    Forum forum = _context.Forums.Find(id);
+        //    if (forum == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(forum);
+        //}
 
-        // POST: Forum/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Forum forum = _context.Forums.Find(id);
-            _context.Forums.Remove(forum);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: Forum/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Forum forum = _context.Forums.Find(id);
+        //    _context.Forums.Remove(forum);
+        //    _context.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
-        protected override void Dispose(bool disposing)
+        private ForumService CreateForumService()
         {
-            if (disposing)
-            {
-                _context.Dispose();
-            }
-            base.Dispose(disposing);
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            return new ForumService(userId);
         }
 
         private HttpStatusCodeResult HttpBadRequest()

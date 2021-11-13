@@ -54,11 +54,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ForumService.cs" />
+    <Compile Include="PostService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThreadService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ForumApp.Data\ForumApp.Data.csproj">
+      <Project>{AC2A51B6-8708-486E-BF42-E6C87E73D217}</Project>
+      <Name>ForumApp.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ForumApp.Models\ForumApp.Models.csproj">
+      <Project>{CBF7CC63-8121-46DC-81D2-B524C43767CF}</Project>
+      <Name>ForumApp.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

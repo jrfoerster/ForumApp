@@ -56,6 +56,15 @@
   <ItemGroup>
     <Compile Include="Forum.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202111022330239_InitialCreate.cs" />
+    <Compile Include="Migrations\202111022330239_InitialCreate.Designer.cs">
+      <DependentUpon>202111022330239_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111131545258_ChangeModifiedUtc.cs" />
+    <Compile Include="Migrations\202111131545258_ChangeModifiedUtc.Designer.cs">
+      <DependentUpon>202111131545258_ChangeModifiedUtc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Thread.cs" />
@@ -63,6 +72,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202111022330239_InitialCreate.resx">
+      <DependentUpon>202111022330239_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111131545258_ChangeModifiedUtc.resx">
+      <DependentUpon>202111131545258_ChangeModifiedUtc.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

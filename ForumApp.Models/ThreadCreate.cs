@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace ForumApp.Models
 {
-    public class ForumCreate
+    public class ThreadCreate
     {
         [Required]
-        public string Name { get; set; }
+        public int ForumId { get; set; }
 
         [Required]
-        public string Description { get; set; }
+        public string Title { get; set; }
+
+        [Required]
+        public string PostContent { get; set; }
     }
 }

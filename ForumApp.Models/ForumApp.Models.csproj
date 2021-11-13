@@ -55,8 +55,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ForumCreate.cs" />
+    <Compile Include="ForumDetail.cs" />
     <Compile Include="ForumListItem.cs" />
+    <Compile Include="PostCreate.cs" />
+    <Compile Include="PostListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThreadCreate.cs" />
+    <Compile Include="ThreadDetail.cs" />
+    <Compile Include="ThreadEdit.cs" />
+    <Compile Include="ThreadListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

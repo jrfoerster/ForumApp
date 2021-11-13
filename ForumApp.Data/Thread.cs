@@ -26,7 +26,8 @@ namespace ForumApp.Data
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }
 
-        public DateTimeOffset? ModifiedUtc { get; set; }
+        [Required]
+        public DateTimeOffset ModifiedUtc { get; set; }
 
         public virtual List<Post> Posts { get; set; }
     }

@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<ForumApp.Models.ForumListItem>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Forums";
 }
 
-<h2>Index</h2>
-
+<h2>Forums</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("New Forum", "Create", null, htmlAttributes: new { @class = "btn btn-primary"})
 </p>
+
 <table class="table">
     <tr>
         <th>
