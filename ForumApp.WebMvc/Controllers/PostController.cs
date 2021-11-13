@@ -39,6 +39,10 @@ namespace ForumApp.WebMvc.Controllers
             return View(model);
         }
 
+        //TODO: Edit post
+
+        //TODO: Delete post
+
         private PostService CreatePostService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
