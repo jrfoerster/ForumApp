@@ -50,6 +50,12 @@ namespace ForumApp.WebMvc.Controllers
         {
             var service = CreateThreadService();
             var model = service.GetThreadEditById(id);
+
+            if (model is null)
+            {
+                return HttpBadRequest();
+            }
+
             return View(model);
         }
 
@@ -83,6 +89,12 @@ namespace ForumApp.WebMvc.Controllers
         {
             var service = CreateThreadService();
             var model = service.GetThreadEditById(id);
+
+            if (model is null)
+            {
+                return HttpBadRequest();
+            }
+
             return View(model);
         }
 

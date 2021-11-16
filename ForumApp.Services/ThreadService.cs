@@ -34,7 +34,7 @@ namespace ForumApp.Services
             {
                 context.Threads.Add(thread);
                 context.SaveChanges();
-                
+
                 var post = new Post()
                 {
                     ThreadId = thread.Id,
@@ -65,14 +65,15 @@ namespace ForumApp.Services
                 {
                     ThreadId = thread.Id,
                     Title = thread.Title,
-                    Posts = thread.Posts.Select(p => new PostListItem()
-                    {
-                        PostId = p.Id,
-                        UserId = p.UserId,
-                        Content = p.Content,
-                        CreatedUtc = p.CreatedUtc,
-                        ModifiedUtc = p.ModifiedUtc
-                    }).ToList()
+                    Posts = thread.Posts
+                        .Select(p => new PostListItem()
+                        {
+                            PostId = p.Id,
+                            UserId = p.UserId,
+                            Content = p.Content,
+                            CreatedUtc = p.CreatedUtc,
+                            ModifiedUtc = p.ModifiedUtc
+                        }).ToList()
                 };
 
                 return model;
@@ -85,7 +86,7 @@ namespace ForumApp.Services
             {
                 var thread = context.Threads
                     .Include(t => t.Forum)
-                    .SingleOrDefault(t => t.Id == id);
+                    .SingleOrDefault(t => t.Id == id && t.UserId == _userId);
 
                 if (thread is null)
                 {
@@ -107,7 +108,14 @@ namespace ForumApp.Services
         {
             using (var context = ApplicationDbContext.Create())
             {
-                var thread = context.Threads.Single(t => t.Id == model.ThreadId && t.UserId == _userId);
+                var thread = context.Threads
+                    .SingleOrDefault(t => t.Id == model.ThreadId && t.UserId == _userId);
+
+                if (thread is null)
+                {
+                    return false;
+                }
+
                 thread.Title = model.Title;
                 return context.SaveChanges() == 1;
             }
@@ -117,7 +125,14 @@ namespace ForumApp.Services
         {
             using (var context = ApplicationDbContext.Create())
             {
-                var thread = context.Threads.Single(t => t.Id == id && t.UserId == _userId);
+                var thread = context.Threads
+                    .SingleOrDefault(t => t.Id == id && t.UserId == _userId);
+
+                if (thread is null)
+                {
+                    return false;
+                }
+
                 context.Threads.Remove(thread);
                 return context.SaveChanges() == 1;
             }
