@@ -13,5 +13,6 @@ namespace ForumApp.Models
         public int PostCount { get; set; }
         public Guid UserId { get; set; }
         public DateTimeOffset LastPostUtc { get; set; }
+        public bool IsEditable { get; set; }
     }
 }

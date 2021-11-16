@@ -31,7 +31,7 @@
     {
         <tr>
             <td>
-                @Html.ActionLink(thread.Title, "Details", "Thread", new { id = thread.ThreadId }, null)
+                @Html.ActionLink(thread.Title, "Details", "Thread", new { id = thread.ThreadId })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => thread.PostCount)
@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => thread.LastPostUtc)
             </td>
             <td>
-                @if (User.Identity.GetUserId() == thread.UserId.ToString())
+                @if (thread.IsEditable)
                 {
                     <div class="btn-group">
                         @Html.ActionLink("Edit", "Edit", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-xs btn-warning" })

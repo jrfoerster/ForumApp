@@ -73,7 +73,8 @@ namespace ForumApp.Services
                             Title = thread.Title,
                             PostCount = thread.Posts.Count,
                             UserId = thread.Posts.First().UserId,
-                            LastPostUtc = thread.ModifiedUtc
+                            LastPostUtc = thread.ModifiedUtc,
+                            IsEditable = thread.UserId == _userId
                         }).ToList()
                 };
 
