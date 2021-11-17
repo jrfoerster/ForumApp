@@ -12,11 +12,16 @@ namespace ForumApp.WebMvc.Controllers
 {
     public class ThreadController : Controller
     {
-        public ActionResult Create(int id)
+        public ActionResult Create(int? id)
         {
+            if (id is null)
+            {
+                return HttpBadRequest();
+            }
+
             var model = new ThreadCreate()
             {
-                ForumId = id
+                ForumId = id.Value
             };
             return View(model);
         }
@@ -39,21 +44,37 @@ namespace ForumApp.WebMvc.Controllers
         }
 
         // GET: Thread
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
+            if (id is null)
+            {
+                return HttpBadRequest();
+            }
+
             var service = CreateThreadService();
-            var detail = service.GetThreadById(id);
+            var detail = service.GetThreadById(id.Value);
+
+            if (detail is null)
+            {
+                return HttpNotFound();
+            }
+
             return View(detail);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
+            if (id is null)
+            {
+                return HttpBadRequest();
+            }
+
             var service = CreateThreadService();
-            var model = service.GetThreadEditById(id);
+            var model = service.GetThreadEditById(id.Value);
 
             if (model is null)
             {
-                return HttpBadRequest();
+                return HttpNotFound();
             }
 
             return View(model);
@@ -85,14 +106,19 @@ namespace ForumApp.WebMvc.Controllers
             return View(model);
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
+            if (id is null)
+            {
+                return HttpBadRequest();
+            }
+
             var service = CreateThreadService();
-            var model = service.GetThreadEditById(id);
+            var model = service.GetThreadEditById(id.Value);
 
             if (model is null)
             {
-                return HttpBadRequest();
+                return HttpNotFound();
             }
 
             return View(model);
@@ -121,7 +147,6 @@ namespace ForumApp.WebMvc.Controllers
         private ThreadService CreateThreadService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            User.Identity.GetUserName();
             return new ThreadService(userId);
         }
 
