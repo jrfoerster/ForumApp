@@ -11,8 +11,9 @@ namespace ForumApp.Models
         public int ThreadId { get; set; }
         public string Title { get; set; }
         public int PostCount { get; set; }
-        public Guid UserId { get; set; }
+        public string UserName { get; set; }
         public DateTimeOffset LastPostUtc { get; set; }
+        public string LastPostUserName { get; set; }
         public bool IsEditable { get; set; }
     }
 }

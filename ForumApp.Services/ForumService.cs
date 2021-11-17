@@ -72,14 +72,29 @@ namespace ForumApp.Services
                             ThreadId = thread.Id,
                             Title = thread.Title,
                             PostCount = thread.Posts.Count,
-                            UserId = thread.Posts.First().UserId,
+                            UserName = GetThreadUserName(context, thread),
                             LastPostUtc = thread.ModifiedUtc,
+                            LastPostUserName = GetLastPostUserName(context, thread),
                             IsEditable = thread.UserId == _userId
                         }).ToList()
                 };
 
                 return model;
             }
+        }
+
+        private string GetThreadUserName(ApplicationDbContext context, Thread thread)
+        {
+            string userId = thread.UserId.ToString();
+            var user = context.Users.Find(userId);
+            return user.UserName;
+        }
+
+        private string GetLastPostUserName(ApplicationDbContext context, Thread thread)
+        {
+            string userId = thread.Posts.Last().UserId.ToString();
+            var user = context.Users.Find(userId);
+            return user.UserName;
         }
     }
 }

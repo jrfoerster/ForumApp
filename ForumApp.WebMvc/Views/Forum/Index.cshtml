@@ -5,9 +5,9 @@
 }
 
 <h2>Forums</h2>
-<p>
-    @Html.ActionLink("New Forum", "Create", null, new { @class = "btn btn-primary"})
-</p>
+<div>
+    @Html.ActionLink("New Forum", "Create", null, new { @class = "btn btn-primary" })
+</div>
 
 <table class="table">
     <tr>
@@ -20,19 +20,20 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink(item.Name, "Details", new { id = item.ForumId })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ForumId })
-            @Html.ActionLink("Delete", "Delete", new { id = item.ForumId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Name, "Details", new { id = item.ForumId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ForumId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ForumId })
+            </td>
+        </tr>
+    }
 
 </table>

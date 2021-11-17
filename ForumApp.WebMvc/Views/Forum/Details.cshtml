@@ -19,7 +19,7 @@
             @Html.DisplayNameFor(model => model.Threads.First().PostCount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Threads.First().UserId)
+            @Html.DisplayNameFor(model => model.Threads.First().UserName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Threads.First().LastPostUtc)
@@ -31,16 +31,17 @@
     {
         <tr>
             <td>
-                @Html.ActionLink(thread.Title, "Details", "Thread", new { id = thread.ThreadId })
+                @Html.ActionLink(thread.Title, "Details", "Thread", new { id = thread.ThreadId }, null)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => thread.PostCount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => thread.UserId)
+                @Html.DisplayFor(modelItem => thread.UserName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => thread.LastPostUtc)
+                @Html.DisplayFor(modelItem => thread.LastPostUtc) by 
+                @Html.DisplayFor(modelItem => thread.LastPostUserName)
             </td>
             <td>
                 @if (thread.IsEditable)

@@ -66,13 +66,14 @@ namespace ForumApp.Services
                     ThreadId = thread.Id,
                     Title = thread.Title,
                     Posts = thread.Posts
-                        .Select(p => new PostListItem()
+                        .Select(post => new PostListItem()
                         {
-                            PostId = p.Id,
-                            UserId = p.UserId,
-                            Content = p.Content,
-                            CreatedUtc = p.CreatedUtc,
-                            ModifiedUtc = p.ModifiedUtc
+                            PostId = post.Id,
+                            UserName = context.Users.Find(post.UserId.ToString()).UserName,
+                            Content = post.Content,
+                            CreatedUtc = post.CreatedUtc,
+                            ModifiedUtc = post.ModifiedUtc,
+                            IsEditable = post.UserId == _userId
                         }).ToList()
                 };
 

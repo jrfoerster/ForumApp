@@ -10,7 +10,7 @@
 <table class="table table-striped">
     <tr>
         <th class="col-sm-4">
-            @Html.DisplayNameFor(model => model.Posts.First().UserId)
+            @Html.DisplayNameFor(model => model.Posts.First().UserName)
         </th>
         <th class="col-sm-8">
             @Html.DisplayNameFor(model => model.Posts.First().Content)
@@ -22,7 +22,7 @@
         <tr>
             <td>
                 <p>
-                    @Html.DisplayFor(modelItem => post.UserId)
+                    @Html.DisplayFor(modelItem => post.UserName)
                 </p>
                 <p>
                     @Html.DisplayFor(modelItem => post.CreatedUtc)
@@ -40,7 +40,7 @@
                     </div>
                 }
 
-                @if (User.Identity.GetUserId() == post.UserId.ToString())
+                @if (post.IsEditable)
                 {
                     <div class="btn-group">
                         @Html.ActionLink("Edit", "Edit", "Post", new { id = post.PostId }, new { @class = "btn btn-xs btn-warning" })

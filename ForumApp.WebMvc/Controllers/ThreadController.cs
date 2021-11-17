@@ -121,6 +121,7 @@ namespace ForumApp.WebMvc.Controllers
         private ThreadService CreateThreadService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
+            User.Identity.GetUserName();
             return new ThreadService(userId);
         }
 
