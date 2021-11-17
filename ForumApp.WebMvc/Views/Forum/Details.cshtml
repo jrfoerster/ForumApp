@@ -21,9 +21,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Threads.First().UserName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Threads.First().LastPostUtc)
-        </th>
+        <th>Last Reply</th>
         <th></th>
     </tr>
 
@@ -39,7 +37,7 @@
             <td>
                 @Html.DisplayFor(modelItem => thread.UserName)
             </td>
-            <td>
+            <td class="small">
                 @Html.DisplayFor(modelItem => thread.LastPostUtc) by 
                 @Html.DisplayFor(modelItem => thread.LastPostUserName)
             </td>
