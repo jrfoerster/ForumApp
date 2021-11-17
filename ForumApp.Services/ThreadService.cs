@@ -69,7 +69,7 @@ namespace ForumApp.Services
                         .Select(post => new PostListItem()
                         {
                             PostId = post.Id,
-                            UserName = context.Users.Find(post.UserId.ToString()).UserName,
+                            UserName = GetUserName(context, post),
                             Content = post.Content,
                             CreatedUtc = post.CreatedUtc,
                             ModifiedUtc = post.ModifiedUtc,
@@ -79,6 +79,13 @@ namespace ForumApp.Services
 
                 return model;
             }
+        }
+
+        private string GetUserName(ApplicationDbContext context, Post post)
+        {
+            string userId = post.UserId.ToString();
+            var user = context.Users.Find(userId);
+            return user.UserName;
         }
 
         public ThreadEdit GetThreadEditById(int id)
