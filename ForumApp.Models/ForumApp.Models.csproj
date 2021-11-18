@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="ForumCreate.cs" />
     <Compile Include="ForumDetail.cs" />
+    <Compile Include="ForumEdit.cs" />
     <Compile Include="ForumListItem.cs" />
     <Compile Include="PostCreate.cs" />
     <Compile Include="PostListItem.cs" />

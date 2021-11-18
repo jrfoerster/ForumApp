@@ -26,7 +26,7 @@ namespace ForumApp.WebMvc.Controllers
         // GET: Forum/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return HttpBadRequest();
             }
@@ -34,7 +34,7 @@ namespace ForumApp.WebMvc.Controllers
             var service = CreateForumService();
             var forum = service.GetForumById(id.Value);
 
-            if (forum == null)
+            if (forum is null)
             {
                 return HttpNotFound();
             }
@@ -65,59 +65,88 @@ namespace ForumApp.WebMvc.Controllers
             return View(model);
         }
 
-        //// GET: Forum/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return HttpBadRequest();
-        //    }
-        //    Forum forum = _context.Forums.Find(id);
-        //    if (forum == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(forum);
-        //}
+        // GET: Forum/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id is null)
+            {
+                return HttpBadRequest();
+            }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Id,Name,Description")] Forum forum)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Entry(forum).State = EntityState.Modified;
-        //        _context.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(forum);
-        //}
+            var service = CreateForumService();
+            var forum = service.GetForumEditById(id.Value);
 
-        //// GET: Forum/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return HttpBadRequest();
-        //    }
-        //    Forum forum = _context.Forums.Find(id);
-        //    if (forum == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(forum);
-        //}
+            if (forum is null)
+            {
+                return HttpNotFound();
+            }
 
-        //// POST: Forum/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Forum forum = _context.Forums.Find(id);
-        //    _context.Forums.Remove(forum);
-        //    _context.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+            return View(forum);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, ForumEdit model)
+        {
+            if (ModelState.IsValid == false)
+            {
+                return View(model);
+            }
+
+            if (model.ForumId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+            }
+
+            var service = CreateForumService();
+
+            if (service.EditForum(model))
+            {
+                TempData["SaveResult"] = "New forum was created.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Your forum could not be updated.");
+            return View(model);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id is null)
+            {
+                return HttpBadRequest();
+            }
+
+            var service = CreateForumService();
+            var model = service.GetForumEditById(id.Value);
+
+            if (model is null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, ForumEdit model)
+        {
+            if (id != model.ForumId)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+            }
+
+            var service = CreateForumService();
+            if (service.DeleteForum(model.ForumId))
+            {
+                TempData["SaveResult"] = "Your forum was deleted";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Your thread could not be deleted");
+            return View(model);
+        }
 
         private ForumService CreateForumService()
         {
