@@ -93,7 +93,7 @@ namespace ForumApp.WebMvc.Controllers
                 return View(model);
             }
 
-            if (model.ForumId != id)
+            if (id != model.ForumId)
             {
                 ModelState.AddModelError("", "Id Mismatch");
             }
