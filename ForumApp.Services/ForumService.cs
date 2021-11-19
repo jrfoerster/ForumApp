@@ -41,7 +41,8 @@ namespace ForumApp.Services
                 {
                     ForumId = forum.Id,
                     Name = forum.Name,
-                    Description = forum.Description
+                    Description = forum.Description,
+                    IsEditable = true  // TODO: add UserId to Forum?
                 });
 
                 return query.ToList();

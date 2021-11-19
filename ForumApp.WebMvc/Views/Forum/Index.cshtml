@@ -20,18 +20,23 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var forum in Model)
     {
         <tr>
             <td>
-                @Html.ActionLink(item.Name, "Details", new { id = item.ForumId })
+                @Html.ActionLink(forum.Name, "Details", new { id = forum.ForumId })
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => forum.Description)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ForumId })
-                @Html.ActionLink("Delete", "Delete", new { id = item.ForumId })
+                @if (forum.IsEditable)
+                {
+                    <div class="btn-group btn-group-xs">
+                        @Html.ActionLink("Edit", "Edit", new { id = forum.ForumId }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Delete", "Delete", new { id = forum.ForumId }, new { @class = "btn btn-danger" })
+                    </div>
+                }
             </td>
         </tr>
     }

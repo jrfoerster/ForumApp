@@ -102,11 +102,11 @@ namespace ForumApp.WebMvc.Controllers
 
             if (service.EditForum(model))
             {
-                TempData["SaveResult"] = "New forum was created.";
+                TempData["SaveResult"] = "Forum was edited.";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Your forum could not be updated.");
+            ModelState.AddModelError("", "Forum could not be updated.");
             return View(model);
         }
 
@@ -140,11 +140,11 @@ namespace ForumApp.WebMvc.Controllers
             var service = CreateForumService();
             if (service.DeleteForum(model.ForumId))
             {
-                TempData["SaveResult"] = "Your forum was deleted";
+                TempData["SaveResult"] = "Forum was deleted";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Your thread could not be deleted");
+            ModelState.AddModelError("", "Forum could not be deleted");
             return View(model);
         }
 
