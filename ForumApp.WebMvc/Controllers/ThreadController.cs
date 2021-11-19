@@ -98,11 +98,11 @@ namespace ForumApp.WebMvc.Controllers
 
             if (service.EditThread(model))
             {
-                TempData["SaveResult"] = "Your thread title was updated";
+                TempData["SaveResult"] = "Thread title was edited";
                 return RedirectToAction("Details", "Forum", new { id = model.ForumId });
             }
 
-            ModelState.AddModelError("", "Your thread title could not be updated.");
+            ModelState.AddModelError("", "Thread title could not be edited.");
             return View(model);
         }
 
@@ -136,11 +136,11 @@ namespace ForumApp.WebMvc.Controllers
             var service = CreateThreadService();
             if (service.DeleteThread(model.ThreadId))
             {
-                TempData["SaveResult"] = "Your thread was deleted";
+                TempData["SaveResult"] = "Thread was deleted";
                 return RedirectToAction("Details", "Forum", new { id = model.ForumId });
             }
 
-            ModelState.AddModelError("", "Your thread could not be deleted");
+            ModelState.AddModelError("", "Thread could not be deleted");
             return View(model);
         }
 

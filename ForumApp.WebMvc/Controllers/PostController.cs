@@ -76,15 +76,51 @@ namespace ForumApp.WebMvc.Controllers
 
             if (service.EditPost(model))
             {
-                TempData["SaveResult"] = "New forum was created.";
-                return RedirectToAction("Index");
+                TempData["SaveResult"] = "Post was edited.";
+                return RedirectToAction("Details", "Thread", new { id = model.ThreadId });
             }
 
-            ModelState.AddModelError("", "Your forum could not be updated.");
+            ModelState.AddModelError("", "Post could not be updated.");
             return View(model);
         }
 
-        //TODO: Delete post
+        public ActionResult Delete(int? id)
+        {
+            if (id is null)
+            {
+                return HttpBadRequest();
+            }
+
+            var service = CreatePostService();
+            var model = service.GetPostEditById(id.Value);
+
+            if (model is null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, PostEdit model)
+        {
+            if (id != model.PostId)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+            }
+
+            var service = CreatePostService();
+            if (service.DeletePost(model.PostId))
+            {
+                TempData["SaveResult"] = "Post was deleted";
+                return RedirectToAction("Details", "Thread", new { id = model.ThreadId });
+            }
+
+            ModelState.AddModelError("", "Post could not be deleted");
+            return View(model);
+        }
 
         private PostService CreatePostService()
         {

@@ -26,16 +26,16 @@
 
                 @if (post.ModifiedUtc.HasValue)
                 {
-                    <div class="text-info">
-                        @Html.DisplayFor(modelItem => post.ModifiedUtc)
+                    <div class="text-muted small ">
+                        <i>Post edited @Html.DisplayFor(modelItem => post.ModifiedUtc)</i>
                     </div>
                 }
 
                 @if (post.IsEditable)
                 {
-                    <div class="btn-group">
-                        @Html.ActionLink("Edit", "Edit", "Post", new { id = post.PostId }, new { @class = "btn btn-xs btn-warning" })
-                        @Html.ActionLink("Delete", "Delete", "Post", new { id = post.PostId }, new { @class = "btn btn-xs btn-danger" })
+                    <div class="btn-group btn-group-xs">
+                        @Html.ActionLink("Edit", "Edit", "Post", new { id = post.PostId }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Delete", "Delete", "Post", new { id = post.PostId }, new { @class = "btn btn-danger" })
                     </div>
                 }
             </td>
