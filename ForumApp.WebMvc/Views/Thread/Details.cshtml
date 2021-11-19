@@ -5,7 +5,18 @@
     ViewBag.Title = Model.Title;
 }
 
-<h2>@Model.Title</h2>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            @Html.ActionLink("Forums", "Index", "Forum")
+        </li>
+        <li class="breadcrumb-item">
+            @Html.ActionLink(Model.ForumName, "Details", "Forum", new { id = Model.ForumId }, null)
+        </li>
+    </ol>
+</nav>
+
+<h1>@Model.Title</h1>
 
 <table class="table table-striped">
     @foreach (var post in Model.Posts)

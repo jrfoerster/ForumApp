@@ -53,6 +53,7 @@ namespace ForumApp.Services
             using (var context = ApplicationDbContext.Create())
             {
                 var thread = context.Threads
+                    .Include(t => t.Forum)
                     .Include(t => t.Posts)
                     .SingleOrDefault(t => t.Id == id);
 
@@ -64,6 +65,8 @@ namespace ForumApp.Services
                 var model = new ThreadDetail()
                 {
                     ThreadId = thread.Id,
+                    ForumId = thread.ForumId,
+                    ForumName = thread.Forum.Name,
                     Title = thread.Title,
                     Posts = thread.Posts
                         .Select(post => new PostListItem()
