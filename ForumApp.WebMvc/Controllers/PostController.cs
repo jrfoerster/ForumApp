@@ -39,7 +39,50 @@ namespace ForumApp.WebMvc.Controllers
             return View(model);
         }
 
-        //TODO: Edit post
+        // GET: Forum/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id is null)
+            {
+                return HttpBadRequest();
+            }
+
+            var service = CreatePostService();
+            var forum = service.GetPostEditById(id.Value);
+
+            if (forum is null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(forum);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, PostEdit model)
+        {
+            if (ModelState.IsValid == false)
+            {
+                return View(model);
+            }
+
+            if (id != model.PostId)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+            }
+
+            var service = CreatePostService();
+
+            if (service.EditPost(model))
+            {
+                TempData["SaveResult"] = "New forum was created.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Your forum could not be updated.");
+            return View(model);
+        }
 
         //TODO: Delete post
 
