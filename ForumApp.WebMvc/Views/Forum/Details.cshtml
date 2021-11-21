@@ -6,9 +6,9 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            @Html.ActionLink("Forums", "Index")
-        </li>
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item">@Html.ActionLink("Forums", "Index")</li>
+        <li class="breadcrumb-item active" aira-current="page">@Model.Name</li>
     </ol>
 </nav>
 
@@ -45,7 +45,7 @@
                 @Html.DisplayFor(modelItem => thread.UserName)
             </td>
             <td class="small">
-                @Html.DisplayFor(modelItem => thread.LastPostUtc) by 
+                @Html.DisplayFor(modelItem => thread.LastPostUtc) by
                 @Html.DisplayFor(modelItem => thread.LastPostUserName)
             </td>
             <td>

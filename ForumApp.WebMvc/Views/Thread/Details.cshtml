@@ -7,12 +7,10 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            @Html.ActionLink("Forums", "Index", "Forum")
-        </li>
-        <li class="breadcrumb-item">
-            @Html.ActionLink(Model.ForumName, "Details", "Forum", new { id = Model.ForumId }, null)
-        </li>
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item">@Html.ActionLink("Forums", "Index", "Forum")</li>
+        <li class="breadcrumb-item">@Html.ActionLink(Model.ForumName, "Details", "Forum", new { id = Model.ForumId }, null)</li>
+        <li class="breadcrumb-item active" aira-current="page">@Model.Title</li>
     </ol>
 </nav>
 

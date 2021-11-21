@@ -4,6 +4,13 @@
     ViewBag.Title = "Forums";
 }
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aira-current="page">Forums</li>
+    </ol>
+</nav>
+
 <h1>Forums</h1>
 <p>
     @Html.ActionLink("New Forum", "Create", null, new { @class = "btn btn-primary" })
