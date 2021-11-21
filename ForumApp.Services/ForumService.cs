@@ -54,7 +54,7 @@ namespace ForumApp.Services
             using (var context = ApplicationDbContext.Create())
             {
                 var forum = context.Forums
-                    .Include(f => f.Threads)
+                    .Include(f => f.Threads.Select(t => t.Posts))
                     .SingleOrDefault(f => f.Id == id);
 
                 if (forum is null)
