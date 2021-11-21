@@ -107,8 +107,9 @@ namespace ForumApp.Services
                 var model = new ThreadEdit()
                 {
                     ForumId = thread.Forum.Id,
+                    ForumName = thread.Forum.Name,
                     ThreadId = thread.Id,
-                    Title = thread.Title
+                    ThreadTitle = thread.Title
                 };
 
                 return model;
@@ -127,7 +128,7 @@ namespace ForumApp.Services
                     return false;
                 }
 
-                thread.Title = model.Title;
+                thread.Title = model.ThreadTitle;
                 return context.SaveChanges() == 1;
             }
         }
