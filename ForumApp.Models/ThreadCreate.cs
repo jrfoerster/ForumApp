@@ -16,6 +16,7 @@ namespace ForumApp.Models
         public string Title { get; set; }
 
         [Required]
+        [Display(Name = "Post Content")]
         public string PostContent { get; set; }
     }
 }
