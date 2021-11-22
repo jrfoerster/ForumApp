@@ -1,41 +1,35 @@
 ﻿@model ForumApp.Models.ThreadEdit
 
 @{
-    ViewBag.Title = "Edit";
+    string _title = "Edit Thread";
+    ViewBag.Title = _title;
 }
 
-<h2>Edit</h2>
+<h1>@_title</h1>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>ThreadEdit</h4>
-        <hr />
+    <div class="row mb-3">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ForumId)
         @Html.HiddenFor(model => model.ThreadId)
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ThreadTitle, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ThreadTitle, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ThreadTitle, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div class="row mb-3">
+        @Html.LabelFor(model => model.ThreadTitle, htmlAttributes: new { @class = "form-label" })
+        @Html.EditorFor(model => model.ThreadTitle, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ThreadTitle, "", new { @class = "text-danger" })
+    </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+    <div class="row mb-3">
+        <div class="btn-group btn-group-lg">
+            @Html.ActionLink("Cancel", "Details", "Forum", new { id = Model.ForumId }, new { @class = "btn btn-light" })
+            <button type="submit" class="btn btn-warning">Edit</button>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to Forum", "Details", "Forum", new { id = Model.ForumId }, null)
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
