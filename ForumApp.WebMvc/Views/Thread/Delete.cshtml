@@ -1,15 +1,14 @@
 ﻿@model ForumApp.Models.ThreadEdit
 
 @{
-    ViewBag.Title = "Delete";
+    string _title = "Delete Forum";
+    ViewBag.Title = _title;
 }
 
-<h2>Delete</h2>
+<h1>@_title</h1>
+<p class="text-danger">Are you sure you want to delete this?</p>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>ThreadEdit</h4>
-    <hr />
+<div class="row mb-3">
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.ForumName)
@@ -26,13 +25,17 @@
         </dd>
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.ForumId)
         @Html.HiddenFor(model => model.ThreadId)
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to Forum", "Details", "Forum", new { id = Model.ForumId }, null)
+
+        <div class="row mb-3">
+            <div class="btn-group btn-group-lg">
+                @Html.ActionLink("Cancel", "Details", "Forum", new { id = Model.ForumId }, new { @class = "btn btn-light" })
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
         </div>
     }
 </div>
