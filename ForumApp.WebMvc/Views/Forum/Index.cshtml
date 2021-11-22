@@ -1,17 +1,18 @@
 ﻿@model IEnumerable<ForumApp.Models.ForumListItem>
 
 @{
-    ViewBag.Title = "Forums";
+    string _title = "Forums";
+    ViewBag.Title = _title;
 }
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
-        <li class="breadcrumb-item active" aira-current="page">Forums</li>
+        <li class="breadcrumb-item active" aira-current="page">@_title</li>
     </ol>
 </nav>
 
-<h1>Forums</h1>
+<h1>@_title</h1>
 <div class="my-3">
     @Html.ActionLink("New Forum", "Create", null, new { @class = "btn btn-primary" })
 </div>

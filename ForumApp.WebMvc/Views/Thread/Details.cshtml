@@ -1,7 +1,8 @@
 ﻿@model ForumApp.Models.ThreadDetail
 
 @{
-    ViewBag.Title = Model.Title;
+    string _title = Model.Title;
+    ViewBag.Title = _title;
 }
 
 <nav aria-label="breadcrumb">
@@ -9,11 +10,11 @@
         <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
         <li class="breadcrumb-item">@Html.ActionLink("Forums", "Index", "Forum")</li>
         <li class="breadcrumb-item">@Html.ActionLink(Model.ForumName, "Details", "Forum", new { id = Model.ForumId }, null)</li>
-        <li class="breadcrumb-item active" aira-current="page">@Model.Title</li>
+        <li class="breadcrumb-item active" aira-current="page">@_title</li>
     </ol>
 </nav>
 
-<h1>@Model.Title</h1>
+<h1>@_title</h1>
 
 @foreach (var post in Model.Posts)
 {
@@ -51,6 +52,8 @@
     </article>
 }
 
-<div>
-    @Html.ActionLink("Reply", "Create", "Post", new { id = Model.ThreadId }, new { @class = "btn btn-primary" })
+<div class="row mb-3">
+    <div class="btn-group btn-group-lg">
+        @Html.ActionLink("Reply", "Create", "Post", new { id = Model.ThreadId }, new { @class = "btn btn-primary" })
+    </div>
 </div>
