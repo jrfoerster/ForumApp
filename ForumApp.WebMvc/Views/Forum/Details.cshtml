@@ -13,50 +13,54 @@
 </nav>
 
 <h1>@Model.Name</h1>
-<p>
+<div class="my-3">
     @Html.ActionLink("New Thread", "Create", "Thread", new { id = Model.ForumId }, new { @class = "btn btn-primary" })
-</p>
+</div>
 
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Threads.First().Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Threads.First().PostCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Threads.First().UserName)
-        </th>
-        <th>Last Reply</th>
-        <th></th>
-    </tr>
-
-    @foreach (var thread in Model.Threads)
-    {
+<table class="table table-hover">
+    <thead>
         <tr>
-            <td>
-                @Html.ActionLink(thread.Title, "Details", "Thread", new { id = thread.ThreadId }, null)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => thread.PostCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => thread.UserName)
-            </td>
-            <td class="small">
-                @Html.DisplayFor(modelItem => thread.LastPostUtc) by
-                @Html.DisplayFor(modelItem => thread.LastPostUserName)
-            </td>
-            <td>
-                @if (thread.IsEditable)
-                {
-                    <div class="btn-group">
-                        @Html.ActionLink("Edit", "Edit", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-xs btn-warning" })
-                        @Html.ActionLink("Delete", "Delete", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-xs btn-danger" })
-                    </div>
-                }
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Threads.First().Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Threads.First().PostCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Threads.First().UserName)
+            </th>
+            <th>Last Reply</th>
+            <th></th>
         </tr>
-    }
+    </thead>
+
+    <tbody>
+        @foreach (var thread in Model.Threads)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(thread.Title, "Details", "Thread", new { id = thread.ThreadId }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => thread.PostCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => thread.UserName)
+                </td>
+                <td class="small">
+                    @Html.DisplayFor(modelItem => thread.LastPostUtc) by
+                    @Html.DisplayFor(modelItem => thread.LastPostUserName)
+                </td>
+                <td>
+                    @if (thread.IsEditable)
+                    {
+                        <div class="btn-group btn-group-sm">
+                            @Html.ActionLink("Edit", "Edit", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("Delete", "Delete", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-danger" })
+                        </div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

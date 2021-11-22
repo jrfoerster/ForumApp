@@ -1,5 +1,4 @@
 ﻿@model ForumApp.Models.ThreadDetail
-@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = Model.Title;
@@ -16,42 +15,42 @@
 
 <h1>@Model.Title</h1>
 
-<table class="table table-striped">
-    @foreach (var post in Model.Posts)
-    {
-        <tr>
-            <td class="col-sm-4">
-                <p>
+@foreach (var post in Model.Posts)
+{
+    <article class="card mb-2">
+        <div class="row g-0">
+            <div class="card-header col-md-4">
+                <div class="card-title">
                     @Html.DisplayFor(modelItem => post.UserName)
-                </p>
-                <p>
+                </div>
+                <div class="card-subtitle">
                     @Html.DisplayFor(modelItem => post.CreatedUtc)
-                </p>
-            </td>
-            <td class="col-sm-8">
-                <div>
+                </div>
+            </div>
+            <div class="card-body col-md-8">
+                <div class="card-text">
                     @Html.DisplayFor(modelItem => post.Content)
                 </div>
 
                 @if (post.ModifiedUtc.HasValue)
                 {
-                    <div class="text-muted small ">
+                    <div class="card-text text-muted small">
                         <i>Post edited @Html.DisplayFor(modelItem => post.ModifiedUtc)</i>
                     </div>
                 }
 
                 @if (post.IsEditable)
                 {
-                    <div class="btn-group btn-group-xs">
-                        @Html.ActionLink("Edit", "Edit", "Post", new { id = post.PostId }, new { @class = "btn btn-warning" })
-                        @Html.ActionLink("Delete", "Delete", "Post", new { id = post.PostId }, new { @class = "btn btn-danger" })
+                    <div class="btn-group btn-group-sm" role="group">
+                        @Html.ActionLink("Edit", "Edit", "Post", new { id = post.PostId }, new { @class = "btn btn-outline-warning" })
+                        @Html.ActionLink("Delete", "Delete", "Post", new { id = post.PostId }, new { @class = "btn btn-outline-danger" })
                     </div>
                 }
-            </td>
-        </tr>
-    }
-</table>
+            </div>
+        </div>
+    </article>
+}
 
-<p>
+<div>
     @Html.ActionLink("Reply", "Create", "Post", new { id = Model.ThreadId }, new { @class = "btn btn-primary" })
-</p>
+</div>
