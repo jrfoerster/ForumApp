@@ -12,7 +12,7 @@ namespace ForumApp.Models
         public int ThreadId { get; set; }
         public string Title { get; set; }
 
-        [Display(Name = "Replies")]
+        [Display(Name = "Posts")]
         public int PostCount { get; set; }
 
         [Display(Name = "Author")]
