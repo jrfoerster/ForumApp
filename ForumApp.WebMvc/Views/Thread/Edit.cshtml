@@ -18,13 +18,15 @@
     </div>
 
     <div class="row mb-3">
-        @Html.LabelFor(model => model.ThreadTitle, htmlAttributes: new { @class = "form-label" })
-        @Html.EditorFor(model => model.ThreadTitle, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.ThreadTitle, "", new { @class = "text-danger" })
+        @Html.LabelFor(model => model.ThreadTitle, htmlAttributes: new { @class = "col-md-3 col-form-label text-right" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.ThreadTitle, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThreadTitle, "", new { @class = "text-danger" })
+        </div>
     </div>
 
     <div class="row mb-3">
-        <div class="btn-group btn-group-lg">
+        <div class="btn-group btn-group-lg col-md-9 offset-md-3">
             @Html.ActionLink("Cancel", "Details", "Forum", new { id = Model.ForumId }, new { @class = "btn btn-light" })
             <button type="submit" class="btn btn-warning">Edit</button>
         </div>
