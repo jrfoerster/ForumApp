@@ -62,6 +62,7 @@ namespace ForumApp.WebMvc.Models
         public bool RememberMe { get; set; }
 
         [Required]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
     }
 
@@ -84,6 +85,7 @@ namespace ForumApp.WebMvc.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
     }
 
