@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ForumApp.WebMvc.Controllers
 {
+    [Authorize]
     public class ForumController : Controller
     {
         // GET: Forum

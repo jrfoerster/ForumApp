@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace ForumApp.WebMvc.Controllers
 {
+    [Authorize]
     public class ThreadController : Controller
     {
         public ActionResult Create(int? id)
