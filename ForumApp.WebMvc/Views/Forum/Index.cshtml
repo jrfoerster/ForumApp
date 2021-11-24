@@ -17,6 +17,17 @@
     @Html.ActionLink("New Forum", "Create", null, new { @class = "btn btn-primary" })
 </div>
 
+@*
+    @if (TempData.ContainsKey("SaveResult"))
+    {
+        <div class="alert alert-primary alert-dismissible" role="alert">
+            @TempData["SaveResult"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            </button>
+        </div>
+    }
+*@
+
 <table class="table table-hover shadow-sm rounded">
     <thead>
         <tr>
