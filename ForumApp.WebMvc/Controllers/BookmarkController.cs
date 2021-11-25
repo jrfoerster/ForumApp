@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ForumApp.WebMvc.Controllers
 {
+    [Authorize]
     public class BookmarkController : Controller
     {
         // GET: Bookmark
