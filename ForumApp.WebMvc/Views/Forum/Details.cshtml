@@ -56,8 +56,8 @@
                     @if (thread.IsEditable)
                     {
                         <div class="btn-group btn-group-sm">
-                            @Html.ActionLink("Edit", "Edit", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-outline-secondary" })
-                            @Html.ActionLink("Delete", "Delete", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-outline-secondary" })
+                            @Html.ActionLink(" ", "Edit", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-outline-secondary bi bi-pencil-square" })
+                            @Html.ActionLink(" ", "Delete", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-outline-secondary bi bi-trash" })
                         </div>
                     }
                 </td>

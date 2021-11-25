@@ -62,8 +62,8 @@
                 @if (post.IsEditable)
                 {
                     <div class="btn-group btn-group-sm" role="group">
-                        @Html.ActionLink("Edit", "Edit", "Post", new { id = post.PostId }, new { @class = "btn btn-outline-secondary" })
-                        @Html.ActionLink("Delete", "Delete", "Post", new { id = post.PostId }, new { @class = "btn btn-outline-secondary" })
+                        @Html.ActionLink(" ", "Edit", "Post", new { id = post.PostId }, new { @class = "btn btn-outline-secondary bi-pencil-square" })
+                        @Html.ActionLink(" ", "Delete", "Post", new { id = post.PostId }, new { @class = "btn btn-outline-secondary bi bi-trash" })
                     </div>
                 }
             </div>
@@ -73,6 +73,6 @@
 
 <div class="row mb-3">
     <div class="btn-group btn-group-lg col-md-9 offset-md-3">
-        @Html.ActionLink("Reply", "Create", "Post", new { id = Model.ThreadId }, new { @class = "btn btn-primary" })
+        @Html.ActionLink(" Reply", "Create", "Post", new { id = Model.ThreadId }, new { @class = "btn btn-primary bi bi-pencil" })
     </div>
 </div>
