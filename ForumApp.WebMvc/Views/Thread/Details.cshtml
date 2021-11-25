@@ -22,7 +22,7 @@
         using (Html.BeginForm("DeleteFromThread", "Bookmark", new { threadId = Model.ThreadId }))
         {
             @Html.AntiForgeryToken()
-            <button type="submit" class="btn btn-danger"><i class="bi bi-bookmark-x"></i> Unbookmark</button>
+            <button type="submit" class="btn btn-danger bi bi-bookmark-x"> Unbookmark</button>
         }
     }
     else
@@ -30,7 +30,7 @@
         using (Html.BeginForm("CreateFromThread", "Bookmark", new { threadId = Model.ThreadId }))
         {
             @Html.AntiForgeryToken()
-            <button type="submit" class="btn btn-primary"><i class="bi bi-bookmark-check"></i> Bookmark</button>
+            <button type="submit" class="btn btn-primary bi bi-bookmark-check"> Bookmark</button>
         }
     }
 </div>
