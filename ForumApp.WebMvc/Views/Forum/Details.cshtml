@@ -48,11 +48,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => thread.UserName)
                 </td>
-                <td class="small">
-                    <i>
+                <td class="small fst-italic">
                         @Html.DisplayFor(modelItem => thread.LastPostUtc) by
                         @Html.DisplayFor(modelItem => thread.LastPostUserName)
-                    </i>
                 </td>
                 <td>
                     @if (thread.IsEditable)
