@@ -36,7 +36,7 @@
                 @if (post.ModifiedUtc.HasValue)
                 {
                     <div class="card-text text-muted small">
-                        <i>Post edited @Html.DisplayFor(modelItem => post.ModifiedUtc)</i>
+                        <i>Post edited @Html.DisplayFor(modelItem => post.ModifiedUtc.Value)</i>
                     </div>
                 }
 
