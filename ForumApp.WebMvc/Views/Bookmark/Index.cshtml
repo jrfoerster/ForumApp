@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ForumApp.Models.ThreadListItem>
+
+@{
+    string _title = "Bookmarks";
+    ViewBag.Title = _title;
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aira-current="page">@_title</li>
+    </ol>
+</nav>
+
+<h1>@_title</h1>
+
+<table class="table table-hover shadow-sm rounded">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.First().Title)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.First().PostCount)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.First().UserName)
+            </th>
+            <th scope="col">Last Reply</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var thread in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(thread.Title, "Details", "Thread", new { id = thread.ThreadId }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => thread.PostCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => thread.UserName)
+                </td>
+                <td class="small fst-italic">
+                    @Html.DisplayFor(modelItem => thread.LastPostUtc) by
+                    @Html.DisplayFor(modelItem => thread.LastPostUserName)
+                </td>
+                <td>
+                    @using (Html.BeginForm("DeleteFromIndex", "Bookmark", new { threadId = thread.ThreadId }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="btn-group btn-group-sm">
+                            <button type="submit" class="btn btn-outline-danger bi bi-bookmark-x"></button>
+                            @if (thread.IsEditable)
+                            {
+                                @Html.ActionLink(" ", "Edit", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-outline-secondary bi bi-pencil-square" })
+                                @Html.ActionLink(" ", "Delete", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-outline-secondary bi bi-trash" })
+                            }
+                        </div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

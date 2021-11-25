@@ -35,6 +35,7 @@ namespace ForumApp.Data
         public DbSet<Forum> Forums { get; set; }
         public DbSet<Thread> Threads { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Bookmark> Bookmarks { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

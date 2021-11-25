@@ -30,5 +30,6 @@ namespace ForumApp.Data
         public DateTimeOffset ModifiedUtc { get; set; }
 
         public virtual List<Post> Posts { get; set; }
+        public virtual List<Bookmark> Bookmarks { get; set; }
     }
 }

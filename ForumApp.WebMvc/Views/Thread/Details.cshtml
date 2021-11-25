@@ -16,6 +16,25 @@
 
 <h1>@_title</h1>
 
+<div class="mb-3">
+    @if (Model.IsBookmarked)
+    {
+        using (Html.BeginForm("DeleteFromThread", "Bookmark", new { threadId = Model.ThreadId }))
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-danger"><i class="bi bi-bookmark-x"></i> Unbookmark</button>
+        }
+    }
+    else
+    {
+        using (Html.BeginForm("CreateFromThread", "Bookmark", new { threadId = Model.ThreadId }))
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-primary"><i class="bi bi-bookmark-check"></i> Bookmark</button>
+        }
+    }
+</div>
+
 @foreach (var post in Model.Posts)
 {
     <article class="card shadow-sm rounded mb-3" id="post-@post.PostId">

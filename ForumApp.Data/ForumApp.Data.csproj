@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bookmark.cs" />
     <Compile Include="Forum.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\202111022330239_InitialCreate.cs" />
@@ -67,6 +68,10 @@
     <Compile Include="Migrations\202111251530256_ForumUserId.cs" />
     <Compile Include="Migrations\202111251530256_ForumUserId.Designer.cs">
       <DependentUpon>202111251530256_ForumUserId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111251655182_AddBookmark.cs" />
+    <Compile Include="Migrations\202111251655182_AddBookmark.Designer.cs">
+      <DependentUpon>202111251655182_AddBookmark.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Post.cs" />
@@ -86,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111251530256_ForumUserId.resx">
       <DependentUpon>202111251530256_ForumUserId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111251655182_AddBookmark.resx">
+      <DependentUpon>202111251655182_AddBookmark.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

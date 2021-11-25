@@ -68,6 +68,7 @@ namespace ForumApp.Services
                     ForumId = thread.ForumId,
                     ForumName = thread.Forum.Name,
                     Title = thread.Title,
+                    IsBookmarked = thread.Bookmarks.Any(b => b.UserId == _userId),
                     Posts = thread.Posts
                         .Select(post => new PostListItem()
                         {

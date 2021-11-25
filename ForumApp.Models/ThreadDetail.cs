@@ -12,6 +12,7 @@ namespace ForumApp.Models
         public int ForumId { get; set; }
         public string ForumName { get; set; }
         public string Title { get; set; }
+        public bool IsBookmarked { get; set; }
         public List<PostListItem> Posts { get; set; }
     }
 }
