@@ -11,7 +11,7 @@ namespace ForumApp.Services
 {
     public class ForumService
     {
-        private Guid _userId;
+        private readonly Guid _userId;
 
         public ForumService(Guid userId)
         {

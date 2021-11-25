@@ -11,7 +11,7 @@ namespace ForumApp.Services
 {
     public class ThreadService
     {
-        private Guid _userId;
+        private readonly Guid _userId;
 
         public ThreadService(Guid userId)
         {
