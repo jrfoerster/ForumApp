@@ -64,6 +64,10 @@
     <Compile Include="Migrations\202111131545258_ChangeModifiedUtc.Designer.cs">
       <DependentUpon>202111131545258_ChangeModifiedUtc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111251530256_ForumUserId.cs" />
+    <Compile Include="Migrations\202111251530256_ForumUserId.Designer.cs">
+      <DependentUpon>202111251530256_ForumUserId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +83,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111131545258_ChangeModifiedUtc.resx">
       <DependentUpon>202111131545258_ChangeModifiedUtc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111251530256_ForumUserId.resx">
+      <DependentUpon>202111251530256_ForumUserId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

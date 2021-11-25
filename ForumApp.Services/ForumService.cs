@@ -22,6 +22,7 @@ namespace ForumApp.Services
         {
             var forum = new Forum()
             {
+                UserId = _userId,
                 Name = model.Name,
                 Description = model.Description
             };
@@ -42,7 +43,7 @@ namespace ForumApp.Services
                     ForumId = forum.Id,
                     Name = forum.Name,
                     Description = forum.Description,
-                    IsEditable = true  // TODO: add UserId to Forum?
+                    IsEditable = forum.UserId == _userId
                 });
 
                 return query.ToList();
@@ -87,8 +88,9 @@ namespace ForumApp.Services
         {
             using (var context = ApplicationDbContext.Create())
             {
-                var forum = context.Forums.SingleOrDefault(f => f.Id == id);
-                // TODO: add UserId to forum?
+                var forum = context.Forums
+                    .SingleOrDefault(f => f.Id == id && f.UserId == _userId);
+
                 if (forum is null)
                 {
                     return null;
@@ -109,7 +111,8 @@ namespace ForumApp.Services
         {
             using (var context = ApplicationDbContext.Create())
             {
-                var forum = context.Forums.Find(model.ForumId);
+                var forum = context.Forums
+                    .SingleOrDefault(f => f.Id == model.ForumId && f.UserId == _userId);
 
                 if (forum is null)
                 {
@@ -127,7 +130,7 @@ namespace ForumApp.Services
             using (var context = ApplicationDbContext.Create())
             {
                 var forum = context.Forums
-                    .SingleOrDefault(f => f.Id == id);
+                    .SingleOrDefault(f => f.Id == id && f.UserId == _userId);
 
                 if (forum is null)
                 {
