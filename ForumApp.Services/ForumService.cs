@@ -145,15 +145,13 @@ namespace ForumApp.Services
         private string GetThreadUserName(ApplicationDbContext context, Thread thread)
         {
             string userId = thread.UserId.ToString();
-            var user = context.Users.Find(userId);
-            return user.UserName;
+            return context.Users.Find(userId).UserName;
         }
 
         private string GetLastPostUserName(ApplicationDbContext context, Thread thread)
         {
             string userId = thread.Posts.Last().UserId.ToString();
-            var user = context.Users.Find(userId);
-            return user.UserName;
+            return context.Users.Find(userId).UserName;
         }
     }
 }
