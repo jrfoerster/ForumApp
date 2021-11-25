@@ -14,7 +14,7 @@
 
 <h1>@_title</h1>
 <div class="mb-3">
-    @Html.ActionLink("New Forum", "Create", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink(" New Forum", "Create", null, new { @class = "btn btn-primary bi bi-pencil" })
 </div>
 
 @*
@@ -55,8 +55,8 @@
                     @if (forum.IsEditable)
                     {
                         <div class="btn-group btn-group-sm">
-                            @Html.ActionLink("Edit", "Edit", new { id = forum.ForumId }, new { @class = "btn btn-outline-secondary" })
-                            @Html.ActionLink("Delete", "Delete", new { id = forum.ForumId }, new { @class = "btn btn-outline-secondary" })
+                            @Html.ActionLink(" ", "Edit", new { id = forum.ForumId }, new { @class = "btn btn-outline-secondary bi bi-pencil-square" })
+                            @Html.ActionLink(" ", "Delete", new { id = forum.ForumId }, new { @class = "btn btn-outline-secondary bi bi-trash" })
                         </div>
                     }
                 </td>
