@@ -56,6 +56,7 @@ namespace ForumApp.Services
             {
                 var forum = context.Forums
                     .Include(f => f.Threads.Select(t => t.Posts))
+                    .Include(f => f.Threads.Select(t => t.Bookmarks))
                     .SingleOrDefault(f => f.Id == id);
 
                 if (forum is null)
@@ -77,7 +78,8 @@ namespace ForumApp.Services
                             UserName = GetThreadUserName(context, thread),
                             LastPostUtc = thread.ModifiedUtc,
                             LastPostUserName = GetLastPostUserName(context, thread),
-                            IsEditable = thread.UserId == _userId
+                            IsEditable = thread.UserId == _userId,
+                            IsBookmarked = thread.Bookmarks.Any(b => b.UserId == _userId)
                         }).ToList()
                 };
 

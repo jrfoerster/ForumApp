@@ -55,6 +55,7 @@ namespace ForumApp.Services
                 var thread = context.Threads
                     .Include(t => t.Forum)
                     .Include(t => t.Posts)
+                    .Include(t => t.Bookmarks)
                     .SingleOrDefault(t => t.Id == id);
 
                 if (thread is null)

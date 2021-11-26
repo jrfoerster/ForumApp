@@ -50,18 +50,16 @@
                         @Html.DisplayFor(modelItem => thread.LastPostUtc) by
                         @Html.DisplayFor(modelItem => thread.LastPostUserName)
                     </td>
-                    <td>
+                    <td class="btn-group btn-group-sm">
                         @using (Html.BeginForm("DeleteFromIndex", "Bookmark", new { threadId = thread.ThreadId }))
                         {
                             @Html.AntiForgeryToken()
-                            <div class="btn-group btn-group-sm">
-                                <button type="submit" class="btn btn-outline-danger bi bi-bookmark-x"></button>
-                                @if (thread.IsEditable)
-                                {
-                                    @Html.ActionLink(" ", "Edit", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-outline-secondary bi bi-pencil-square" })
-                                    @Html.ActionLink(" ", "Delete", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-outline-secondary bi bi-trash" })
-                                }
-                            </div>
+                            <button type="submit" class="btn btn-sm btn-outline-danger bi bi-bookmark-x"></button>
+                        }
+                        @if (thread.IsEditable)
+                        {
+                            @Html.ActionLink(" ", "Edit", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-outline-secondary bi bi-pencil-square" })
+                            @Html.ActionLink(" ", "Delete", "Thread", new { id = thread.ThreadId }, new { @class = "btn btn-outline-secondary bi bi-trash" })
                         }
                     </td>
                 </tr>

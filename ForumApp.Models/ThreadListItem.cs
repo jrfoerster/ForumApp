@@ -21,5 +21,7 @@ namespace ForumApp.Models
         public DateTimeOffset LastPostUtc { get; set; }
         public string LastPostUserName { get; set; }
         public bool IsEditable { get; set; }
+        public bool IsBookmarked { get; set; }
+
     }
 }

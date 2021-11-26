@@ -21,9 +21,8 @@ namespace ForumApp.WebMvc.Controllers
         }
 
         [HttpPost]
-        [ActionName("CreateFromThread")]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateBookmark(int threadId)
+        public ActionResult CreateFromThread(int threadId)
         {
             var service = CreateBookmarkService();
             service.CreateBookmark(threadId);
@@ -31,9 +30,17 @@ namespace ForumApp.WebMvc.Controllers
         }
 
         [HttpPost]
-        [ActionName("DeleteFromThread")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteBookmarkFromThread(int threadId)
+        public ActionResult CreateFromForumDetail(int threadId, int forumId)
+        {
+            var service = CreateBookmarkService();
+            service.CreateBookmark(threadId);
+            return RedirectToAction("Details", "Forum", new { id = forumId });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteFromThread(int threadId)
         {
             var service = CreateBookmarkService();
             service.DeleteBookmark(threadId);
@@ -41,13 +48,21 @@ namespace ForumApp.WebMvc.Controllers
         }
 
         [HttpPost]
-        [ActionName("DeleteFromIndex")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteBookmarkFromIndex(int threadId)
+        public ActionResult DeleteFromIndex(int threadId)
         {
             var service = CreateBookmarkService();
             service.DeleteBookmark(threadId);
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteFromForumDetail(int threadId, int forumId)
+        {
+            var service = CreateBookmarkService();
+            service.DeleteBookmark(threadId);
+            return RedirectToAction("Details", "Forum", new { id = forumId });
         }
 
         private BookmarkService CreateBookmarkService()
