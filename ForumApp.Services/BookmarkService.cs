@@ -22,7 +22,7 @@ namespace ForumApp.Services
         {
             using (var context = ApplicationDbContext.Create())
             {
-                var hasBookmark = context.Bookmarks
+                bool hasBookmark = context.Bookmarks
                     .Any(b => b.ThreadId == threadId && b.UserId == _userId);
 
                 if (hasBookmark)
@@ -62,14 +62,15 @@ namespace ForumApp.Services
         {
             using (var context = ApplicationDbContext.Create())
             {
-                var query = context.Bookmarks
-                    .Include(b => b.Thread)
+                var bookmarks = context.Bookmarks
+                    .Include(b => b.Thread.Posts)
+                    .Where(b => b.UserId == _userId)
                     .OrderByDescending(b => b.Thread.ModifiedUtc)
                     .ToList();
 
                 var threads = new List<ThreadListItem>();
 
-                foreach (var bookmark in query)
+                foreach (var bookmark in bookmarks)
                 {
                     var thread = bookmark.Thread;
                     var t = new ThreadListItem()
