@@ -1,11 +1,8 @@
 ﻿using ForumApp.Data;
 using ForumApp.Models;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ForumApp.Services
 {
@@ -89,8 +86,7 @@ namespace ForumApp.Services
         private string GetUserName(ApplicationDbContext context, Post post)
         {
             string userId = post.UserId.ToString();
-            var user = context.Users.Find(userId);
-            return user.UserName;
+            return context.Users.Find(userId).UserName;
         }
 
         public ThreadEdit GetThreadEditById(int id)

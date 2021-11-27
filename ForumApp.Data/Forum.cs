@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ForumApp.Data
 {
@@ -21,6 +18,6 @@ namespace ForumApp.Data
         [Required]
         public string Description { get; set; }
 
-        public virtual List<Thread> Threads { get; set; }      
+        public virtual List<Thread> Threads { get; set; }
     }
 }
